@@ -1,0 +1,6 @@
+/springcloud-eureka/target/
+/logs/
+/.idea/
+/hmily-demo-springcloud/hmily-demo-springcloud-account/target/
+/hmily-demo-springcloud/hmily-demo-springcloud-inventory/target/
+/hmily-demo-springcloud/hmily-demo-springcloud-order/target/

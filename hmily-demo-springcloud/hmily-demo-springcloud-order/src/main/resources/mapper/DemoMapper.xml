@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mepeng.cn.SevenPen.order.mapper.DemoMapper">
+	<insert id="insert" parameterType="com.mepeng.cn.SevenPen.order.entity.Demo" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
+		insert into tcc_demo(name,create_time,status,uuid)
+		values (
+			#{name},
+			#{createTime},
+			#{status},
+			#{uuid}
+		)
+	</insert>
+    <!-- 查询 -->
+    <select id="selectById" parameterType="long" resultType="com.mepeng.cn.SevenPen.order.entity.Demo">
+		select t.id 'id',
+			t.name 'name',
+			t.create_time 'createTime',
+			t.status 'status',
+			t.uuid 'uuid'
+		from tcc_demo  t
+		where t.id = #{id}
+	</select>
+	<select id="selectByUuid" parameterType="string" resultType="com.mepeng.cn.SevenPen.order.entity.Demo">
+		select t.id 'id',
+			t.name 'name',
+			t.create_time 'createTime',
+			t.status 'status',
+			t.uuid 'uuid'
+		from tcc_demo  t
+		where t.uuid = #{uuid}
+	</select>
+
+	<!-- 更新 -->
+	<update id="update" parameterType="com.mepeng.cn.SevenPen.order.entity.Demo">
+		update tcc_demo set name =  #{name},status =  #{status}
+		where id = #{id}
+	</update>
+	<delete id="delete">
+		delete from tcc_demo where  id = #{id}
+	</delete>
+	<select id="demoLocalSQL" parameterType="map" resultType="map">
+		${sql}
+	</select>
+	<insert id="insertPenHimlyEntity" parameterType="com.mepeng.cn.SevenPen.order.kryo.Dto.PenHimlyEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
+		insert into tcc_pen_himly(
+			data,
+			target_class,
+			target_method,
+			confirm_method,
+			cancel_method,
+			create_time,
+			last_time
+			)
+		values (
+			#{data,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			#{targetClass},
+			#{targetMethod},
+			#{confirmMethod},
+			#{cancelMethod},
+			#{createTime},
+			#{lastTime}
+		)
+	</insert>
+	<resultMap id="PenHimlyEntityBaseResultMap" type="com.mepeng.cn.SevenPen.order.kryo.Dto.PenHimlyEntity">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="data"  property="data" jdbcType="BLOB"  typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+		<result column="target_class" jdbcType="VARCHAR" property="targetClass" />
+		<result column="target_method" jdbcType="VARCHAR" property="targetMethod" />
+		<result column="cancel_method" jdbcType="VARCHAR" property="cancelMethod" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+	</resultMap>
+	<select id="selectPenHimlyEntityById" parameterType="long" resultMap="PenHimlyEntityBaseResultMap">
+		select t.id 'id',
+			t.data 'data',
+			t.target_class 'targetClass',
+			t.target_method 'targetMethod',
+			t.confirm_method 'confirmMethod',
+			t.cancel_method 'cancelMethod',
+			t.create_time 'createTime',
+			t.last_time 'lastTime'
+		from tcc_pen_himly  t
+		where t.id = #{id}
+	</select>
+</mapper>
