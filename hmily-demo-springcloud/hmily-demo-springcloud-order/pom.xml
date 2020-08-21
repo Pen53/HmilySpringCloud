@@ -11,7 +11,9 @@
 
     <artifactId>hmily-demo-springcloud-order</artifactId>
     <version>1.0.0-RELEASE</version>
-
+    <properties>
+        <fastjson.version>1.2.41</fastjson.version>
+    </properties>
     <dependencies>
 
         <dependency>
@@ -78,6 +80,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--自动配置-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -137,18 +147,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-bean-validators</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.esotericsoftware/kryo -->
-        <!--<dependency>
-            <groupId>com.esotericsoftware</groupId>
-            <artifactId>kryo</artifactId>
-            <version>5.0.0-RC8</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.9.5</version>
-            <scope>compile</scope>
-        </dependency>-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
